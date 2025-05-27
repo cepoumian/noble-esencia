@@ -1,18 +1,27 @@
 "use client";
-import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 import clsx from "clsx";
 import { gsap } from "gsap";
-import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 gsap.registerPlugin(useGSAP);
 
 type FadeInProps = {
   children: React.ReactNode;
+  start?: string;
   vars?: gsap.TweenVars;
   className?: string;
 };
 
-export const FadeIn = ({ children, vars = {}, className }: FadeInProps) => {
+export const FadeIn = ({
+  children,
+  start = "top 80%",
+  vars = {},
+  className,
+}: FadeInProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -27,6 +36,10 @@ export const FadeIn = ({ children, vars = {}, className }: FadeInProps) => {
           ease: "power3.out",
           y: 0,
           ...vars,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start,
+          },
         });
       });
 

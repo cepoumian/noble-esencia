@@ -11,6 +11,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "call_to_action": {
+              "type": "SharedSlice"
+            },
+            "fragrance_list": {
+              "type": "SharedSlice"
+            },
             "product_feature": {
               "type": "SharedSlice"
             },

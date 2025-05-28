@@ -127,6 +127,8 @@ export type FragranceDocument<Lang extends string = string> =
   >;
 
 type HomepageDocumentDataSlicesSlice =
+  | CallToActionSlice
+  | FragranceListSlice
   | ProductFeatureSlice
   | ScrollTextSlice
   | HeroSlice;
@@ -195,6 +197,181 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes = FragranceDocument | HomepageDocument;
+
+/**
+ * Primary content in *CallToAction → Default → Primary*
+ */
+export interface CallToActionSliceDefaultPrimary {
+  /**
+   * Eyebrow field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.default.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  eyebrow: prismic.KeyTextField;
+
+  /**
+   * Heading field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Body field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Button field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.default.primary.button
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button: prismic.Repeatable<
+    prismic.LinkField<
+      string,
+      string,
+      unknown,
+      prismic.FieldState,
+      "Primary" | "Secondary"
+    >
+  >;
+}
+
+/**
+ * Default variation for CallToAction Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CallToActionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CallToActionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CallToAction*
+ */
+type CallToActionSliceVariation = CallToActionSliceDefault;
+
+/**
+ * CallToAction Shared Slice
+ *
+ * - **API ID**: `call_to_action`
+ * - **Description**: CallToAction
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CallToActionSlice = prismic.SharedSlice<
+  "call_to_action",
+  CallToActionSliceVariation
+>;
+
+/**
+ * Item in *FragranceList → Default → Primary → Fragrances*
+ */
+export interface FragranceListSliceDefaultPrimaryFragrancesItem {
+  /**
+   * Fragrance field in *FragranceList → Default → Primary → Fragrances*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance_list.default.primary.fragrances[].fragrance
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  fragrance: prismic.ContentRelationshipField<"fragrance">;
+}
+
+/**
+ * Primary content in *FragranceList → Default → Primary*
+ */
+export interface FragranceListSliceDefaultPrimary {
+  /**
+   * Eyebrow field in *FragranceList → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance_list.default.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  eyebrow: prismic.KeyTextField;
+
+  /**
+   * Heading field in *FragranceList → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance_list.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Body field in *FragranceList → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance_list.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Fragrances field in *FragranceList → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance_list.default.primary.fragrances[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  fragrances: prismic.GroupField<
+    Simplify<FragranceListSliceDefaultPrimaryFragrancesItem>
+  >;
+}
+
+/**
+ * Default variation for FragranceList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FragranceListSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FragranceListSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FragranceList*
+ */
+type FragranceListSliceVariation = FragranceListSliceDefault;
+
+/**
+ * FragranceList Shared Slice
+ *
+ * - **API ID**: `fragrance_list`
+ * - **Description**: FragranceList
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FragranceListSlice = prismic.SharedSlice<
+  "fragrance_list",
+  FragranceListSliceVariation
+>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -434,6 +611,15 @@ declare module "@prismicio/client" {
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      CallToActionSlice,
+      CallToActionSliceDefaultPrimary,
+      CallToActionSliceVariation,
+      CallToActionSliceDefault,
+      FragranceListSlice,
+      FragranceListSliceDefaultPrimaryFragrancesItem,
+      FragranceListSliceDefaultPrimary,
+      FragranceListSliceVariation,
+      FragranceListSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,

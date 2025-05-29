@@ -87,9 +87,10 @@ export async function generateMetadata({
   const { uid } = await params;
   const client = createClient();
   const page = await client.getByUID("fragrance", uid).catch(() => notFound());
+  const settings = await client.getSingle("settings");
 
   return {
-    title: asText(page.data.title) + " | Noble Esencia",
+    title: asText(page.data.title) + " | " + settings.data.site_title,
     description: `Descubre ${asText(page.data.description)}, la nueva fragancia de Noble Esencia.`,
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],

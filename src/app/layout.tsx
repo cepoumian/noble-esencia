@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import localFont from "next/font/local";
-import "./globals.css";
-import { Footer } from "@/components/Footer";
-import { NavBar } from "@/components/NavBar";
+import { ViewTransitions } from "next-view-transitions";
+
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
 import { createClient } from "@/prismicio";
 import { isFilled } from "@prismicio/client";
-import { ViewTransitions } from "next-view-transitions";
+
+import { Footer } from "@/components/Footer";
+import { NavBar } from "@/components/NavBar";
+import "./globals.css";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -58,6 +62,7 @@ export default async function RootLayout({
           <Footer />
         </body>
       </html>
+      <PrismicPreview repositoryName={repositoryName} />
     </ViewTransitions>
   );
 }

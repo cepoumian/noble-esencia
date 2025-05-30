@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import { TransitionLink } from "@/components/TransitionLink";
 
 export const Footer = () => {
   return (
@@ -10,17 +10,17 @@ export const Footer = () => {
       </h2>
       <div className="container mx-auto px-6">
         <div className="grid gap-10 md:grid-cols-3">
-          <NavGroup title="Shop">
+          <NavGroup title="Fragancias">
             <NavLink href="/fragrance/terra">Terra</NavLink>
-            <NavLink href="/fragrance/igni">Igni</NavLink>
+            <NavLink href="/fragrance/ignis">Ignis</NavLink>
             <NavLink href="/fragrance/aqua">Aqua</NavLink>
           </NavGroup>
 
-          <NavGroup title="About">
+          {/* <NavGroup title="About">
             <NavLink href="#">Science</NavLink>
             <NavLink href="#">Our Story</NavLink>
-            <NavLink href="#">Côte Royale</NavLink>
-          </NavGroup>
+            <NavLink href="#">Noble Esencia</NavLink>
+          </NavGroup> */}
 
           <NavGroup title="Social">
             <NavLink href="#">Instagram</NavLink>
@@ -32,28 +32,34 @@ export const Footer = () => {
         {/* Bottom footer */}
         <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-neutral-800 pt-8 md:flex-row">
           <p className="text-center text-sm text-gray-400">
-            © {new Date().getFullYear()} Côte Royale Inc. All rights reserved
+            © {new Date().getFullYear()} Noble Esencia | Todos los derechos
+            reservados.
           </p>
-          <Link
+          <TransitionLink
             href="/"
-            aria-label="Côte Royale Home"
+            aria-label="Noble Esencia Home"
             className="order-first md:order-none"
           >
-            <Image src="/logo.svg" alt="CÔTE ROYALE" width={150} height={25} />
-          </Link>
+            <Image
+              src="/logo.svg"
+              alt="NOBLE ESENCIA"
+              width={150}
+              height={25}
+            />
+          </TransitionLink>
           <ul
             aria-label="Legal"
             className="flex flex-wrap justify-center gap-6 text-sm text-gray-400"
           >
             <li>
-              <Link href="#" className="hover:text-white">
-                Terms &amp; conditions
-              </Link>
+              <a href="#" className="hover:text-white">
+                Términos y Condiciones
+              </a>
             </li>
             <li>
-              <Link href="#" className="hover:text-white">
-                Privacy Policy
-              </Link>
+              <a href="#" className="hover:text-white">
+                Política de Privacidad
+              </a>
             </li>
           </ul>
         </div>
@@ -89,9 +95,9 @@ type NavLinkProps = {
 const NavLink = ({ href, children }: NavLinkProps) => {
   return (
     <li>
-      <Link href={href} className="hover:text-gray-300">
+      <TransitionLink href={href} className="hover:text-gray-300">
         {children}
-      </Link>
+      </TransitionLink>
     </li>
   );
 };

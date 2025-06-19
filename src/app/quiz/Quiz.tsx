@@ -6,14 +6,16 @@ import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { Question } from "./Question";
 import { Votes, Vote } from "./types";
+import { Results } from "./Results";
 
 type QuizProps = {
   quizData: Content.QuizDocument;
+  fragrances: Content.FragranceDocument[];
 };
 
 type QuizStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED";
 
-export const Quiz = ({ quizData }: QuizProps) => {
+export const Quiz = ({ quizData, fragrances }: QuizProps) => {
   const startScreenRef = useRef<HTMLDivElement>(null);
   const [quizStatus, setQuizStatus] = useState<QuizStatus>("NOT_STARTED");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -100,8 +102,20 @@ export const Quiz = ({ quizData }: QuizProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => console.log("Votes:", votes), [votes]);
-  useEffect(() => console.log("Quiz Status:", quizStatus), [quizStatus]);
+  const reset = () => {
+    setVotes([]);
+    setCurrentQuestionIndex(0);
+    setQuizStatus("NOT_STARTED");
+  };
+
+  const totalVotes: Vote = votes.reduce(
+    (acc, vote) => ({
+      Terra: acc.Terra + vote.Terra,
+      Ignis: acc.Ignis + vote.Ignis,
+      Aqua: acc.Aqua + vote.Aqua,
+    }),
+    { Terra: 0, Ignis: 0, Aqua: 0 },
+  );
 
   return (
     <div className="min-h-screen">
@@ -117,6 +131,13 @@ export const Quiz = ({ quizData }: QuizProps) => {
           totalQuestions={quizData.data.questions.length}
           onAnswerSelected={addVote}
           onBack={back}
+        />
+      )}
+      {quizStatus === "COMPLETED" && (
+        <Results
+          fragrances={fragrances}
+          onRetakeQuiz={reset}
+          votes={totalVotes}
         />
       )}
     </div>

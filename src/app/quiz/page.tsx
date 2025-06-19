@@ -9,10 +9,11 @@ import { Quiz } from "./Quiz";
 export default async function Page() {
   const client = createClient();
   const quiz = await client.getSingle("quiz").catch(() => notFound());
+  const fragrances = await client.getAllByType("fragrance");
 
   return (
     <Bounded className="grid min-h-screen place-items-center bg-[url('/background.avif')] bg-cover bg-center text-gray-50">
-      <Quiz quizData={quiz} />
+      <Quiz quizData={quiz} fragrances={fragrances} />
     </Bounded>
   );
 }

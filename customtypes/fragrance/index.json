@@ -58,8 +58,8 @@
         "config": {
           "label": "Scent Profile",
           "placeholder": "",
-          "options": ["spicy", "woody", "fresh"],
-          "default_value": "spicy"
+          "options": ["especiado", "boscoso", "fresco"],
+          "default_value": "especiado"
         }
       },
       "mood": {
@@ -67,8 +67,8 @@
         "config": {
           "label": "Mood",
           "placeholder": "",
-          "options": ["bold", "grounded", "refreshing"],
-          "default_value": "bold"
+          "options": ["atrevido", "aterrizado", "refrescante"],
+          "default_value": "atrevido"
         }
       },
       "slices": {

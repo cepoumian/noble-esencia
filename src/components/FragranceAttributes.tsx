@@ -18,15 +18,15 @@ const SCENT_PROFILES: Record<
   Content.FragranceDocumentData["scent_profile"],
   AttributeData
 > = {
-  spicy: { label: "Spicy & Smoky", Icon: LuFlame },
-  woody: { label: "Woody & Herbal", Icon: LuTreePine },
-  fresh: { label: "Fresh & Aquatic", Icon: LuDroplet },
+  especiado: { label: "Especiado & Humeante", Icon: LuFlame },
+  boscoso: { label: "Boscoso & Herbal", Icon: LuTreePine },
+  fresco: { label: "Fresco & Acuático", Icon: LuDroplet },
 };
 
 const MOODS: Record<Content.FragranceDocumentData["mood"], AttributeData> = {
-  bold: { label: "Bold & Seductive", Icon: LuCrown },
-  grounded: { label: "Grounded & Sophisticated", Icon: LuGem },
-  refreshing: { label: "Refreshing & Invigorating", Icon: LuZap },
+  atrevido: { label: "Atrevido & Seductor", Icon: LuCrown },
+  aterrizado: { label: "Maduro & Sofisticado", Icon: LuGem },
+  refrescante: { label: "Refrescante & Envigorante", Icon: LuZap },
 };
 
 type FragranceAttributesProps = {

@@ -70,24 +70,30 @@ interface FragranceDocumentData {
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **Default Value**: spicy
+   * - **Default Value**: especiado
    * - **API ID Path**: fragrance.scent_profile
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  scent_profile: prismic.SelectField<"spicy" | "woody" | "fresh", "filled">;
+  scent_profile: prismic.SelectField<
+    "especiado" | "boscoso" | "fresco",
+    "filled"
+  >;
 
   /**
    * Mood field in *Fragrance*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **Default Value**: bold
+   * - **Default Value**: atrevido
    * - **API ID Path**: fragrance.mood
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  mood: prismic.SelectField<"bold" | "grounded" | "refreshing", "filled">;
+  mood: prismic.SelectField<
+    "atrevido" | "aterrizado" | "refrescante",
+    "filled"
+  >;
 
   /**
    * Slice Zone field in *Fragrance*

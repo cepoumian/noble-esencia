@@ -6,19 +6,19 @@ import Image from "next/image";
 import { useState } from "react";
 import {
   HiBars3,
-  HiMagnifyingGlass,
-  HiShoppingBag,
-  HiUser,
+  // HiMagnifyingGlass,
+  // HiShoppingBag,
+  // HiUser,
   HiXMark,
 } from "react-icons/hi2";
 import { TransitionLink } from "@/components/TransitionLink";
 
-type NavIconsProps = {
+/* type NavIconsProps = {
   className?: string;
   tabIndex?: number;
-};
+}; */
 
-const NavIcons = ({ className = "", tabIndex }: NavIconsProps) => (
+/* const NavIcons = ({ className = "", tabIndex }: NavIconsProps) => (
   <div
     className={clsx("flex items-center gap-8", className)}
     tabIndex={tabIndex}
@@ -33,7 +33,7 @@ const NavIcons = ({ className = "", tabIndex }: NavIconsProps) => (
       <HiShoppingBag size={24} />
     </a>
   </div>
-);
+); */
 
 type NavBarProps = {
   settings?: Content.SettingsDocument;
@@ -67,9 +67,9 @@ export const NavBar = ({ settings }: NavBarProps) => {
             </TransitionLink>
           </div>
 
-          <div className="flex">
+          {/* <div className="flex">
             <NavIcons className="hidden md:flex" />
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -113,12 +113,12 @@ export const NavBar = ({ settings }: NavBarProps) => {
               tabIndex={isDrawerOpen ? 0 : -1}
             />
           ))}
-          <div className="pt-4 md:hidden">
+          {/* <div className="pt-4 md:hidden">
             <NavIcons
               className="justify-around"
               tabIndex={isDrawerOpen ? 0 : -1}
             />
-          </div>
+          </div> */}
         </nav>
       </div>
     </header>
